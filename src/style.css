@@ -1,0 +1,192 @@
+@font-face {
+    font-family: "Comfortaa";
+    src: url("static/Fonts/Comfortaa/static/Comfortaa-Regular.ttf");
+}
+    
+@font-face {
+    font-family: "Comfortaa-bold";
+    src: url("static/Fonts/Comfortaa/static/Comfortaa-Bold.ttf");
+}
+    
+@font-face {
+    font-family: "Comfortaa-ligth";
+    src: url("static/Fonts/Comfortaa/static/Comfortaa-Light.ttf");
+}
+    
+     
+    
+    
+
+/* 
+########################
+General
+########################
+*/ 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Comfortaa';
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* 
+########################
+Navigation
+########################
+*/ 
+
+nav {
+    display: none;
+    position: fixed;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(3px);
+    min-width: 13rem;
+}
+
+nav.open {
+    display: flex;
+}
+
+nav a {
+    text-decoration: none;
+    color: #00000080;
+    text-align: right;
+    font-size: 1.5rem;
+    padding: 1rem;
+    min-height: 3rem;
+}
+
+nav a:hover {
+    font-size: 1.6rem;
+    padding-right: 1.2rem;
+}
+
+nav a.active {
+    color: #000000;
+}
+
+#hamburger {
+    position: fixed;
+    z-index: 100;
+    right: 1rem;
+    top: 1rem;
+    font-size: 3rem;
+}
+
+
+/* 
+########################
+Three js
+########################
+*/ 
+.webgl {
+    outline: black;
+}
+
+/* 
+########################
+Defaults
+########################
+*/ 
+.section {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+#walkthrough {
+    background-color: #ffd7a2;
+}
+
+.carrousel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carrousel_filter {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(217, 188, 130, 0.2);
+}
+
+.title-box {
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(3px);
+}
+
+.title-box h1 {
+    text-wrap: nowrap;
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+.corrousel_container {
+    height: 100%;
+    width: calc(100% * 3);
+    display: flex;
+}
+
+.corrousel_container img {
+    width: calc(100% / 3);
+    object-fit: cover;
+
+    animation: carrousel-image 20s ease-in-out infinite;
+}
+
+@keyframes carrousel-image {
+    0%, 33% {
+        transform: translateX(0);
+    }
+    33.6%, 66% {
+        transform: translateX(-100%);
+    }
+    66.6%, 99% {
+        transform: translateX(-200%);
+    } 
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* 
+########################
+Desktop
+########################
+*/ 
+
+@media screen and (min-width: 769px) {
+    nav {
+        display: flex;
+    }
+
+    #hamburger {
+        display: none;
+    }
+
+    .title-box h1 {
+            font-size: 3rem;
+    }
+}

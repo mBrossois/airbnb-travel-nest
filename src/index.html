@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel nest</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#details">Details</a>
+        <a href="#walkthrough">Walkthrough</a>
+        <a href="#suggestions">Suggestions</a>
+    </nav>
+
+    <span id="hamburger" class="material-symbols-outlined">
+        menu
+    </span>
+
+    <div id="home" class="section">
+        <div class="carrousel">
+            <div class="corrousel_container">
+                <img src="static/images/img1.webp">
+                <img src="static/images/img2.webp">
+                <img src="static/images/img3.webp">
+            </div>
+            <div class="carrousel_filter"></div>
+        </div>
+        <div class="title-box">
+            <h1 >Travel nest</h1>
+        </div>
+    </div>
+
+    <div id="details" class="section"></div>
+
+    <div id="walkthrough" class="3d-image section">
+        <canvas class="webgl"></canvas>
+        <script type="module" src="./threejs-script.js"></script>
+    </div>
+
+    <div id="suggestions" class="section"></div>
+
+    <script src="./index.js"></script>
+</body>
+</html>
