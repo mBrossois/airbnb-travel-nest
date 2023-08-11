@@ -41,15 +41,14 @@ Navigation
 nav {
     display: none;
     position: fixed;
+    width: 100%;
     right: 0;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 100;
     height: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(3px);
-    min-width: 13rem;
+    background: rgba(255, 255, 255, 1);
 }
 
 nav.open {
@@ -74,12 +73,16 @@ nav a.active {
     color: #000000;
 }
 
-#hamburger {
+#hamburger, #close {
     position: fixed;
     z-index: 100;
     right: 1rem;
     top: 1rem;
     font-size: 3rem;
+}
+
+#hamburger.hidden, #close.hidden {
+    display: none;
 }
 
 /* 
@@ -95,13 +98,14 @@ Second page
 .second-page-fields {
     padding: 0 3rem;
     display: grid;
-    grid-template-columns: 17rem 17rem 17rem 17rem 17rem;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));;
     gap: 1rem;
 }
 
-.second-page-fields div {
-    min-width: 15rem;
+.second-page-fields div h2 { 
+    padding-bottom: .5rem;
 }
+
 /* 
 ########################
 Three js
@@ -195,9 +199,12 @@ Desktop
 @media screen and (min-width: 769px) {
     nav {
         display: flex;
+        width: 13rem;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(3px);
     }
 
-    #hamburger {
+    #hamburger, #close {
         display: none;
     }
 
@@ -206,10 +213,7 @@ Desktop
     }
 
     .second-page-fields {
-        padding-right: 13rem;
-        grid-template-columns: 17rem 17rem 17rem 17rem 17rem;
-        gap: 1rem;
-    
+        padding-right: 13rem;    
 
     }
 }

@@ -2,6 +2,7 @@ import * as contentful from 'contentful'
 import { textField } from './utils/text-field'
 
 const hamburger = document.getElementById('hamburger')
+const close = document.getElementById('close')
 const nav = document.querySelector('nav')
 
 // Contentful
@@ -68,13 +69,22 @@ const y = scrollToItem.getBoundingClientRect().top + window.scrollY;
 window.scrollTo({top: y, behavior: 'smooth'})
 
 
+
 // Event listeners
 hamburger.addEventListener('click', () => {
-    if(nav.classList.contains('open')){
-        nav.classList.remove('open')
-    } else {
-        nav.classList.add('open')
-    }
+    nav.classList.add('open')
+    hamburger.classList.add('hidden')
+    close.classList.remove('hidden')
+
+    document.body.style.overflowY = 'hidden'
+})
+
+close.addEventListener('click', () => {
+    document.body.style.overflowY = 'scroll'
+
+    nav.classList.remove('open')
+    close.classList.add('hidden')
+    hamburger.classList.remove('hidden')
 })
 
 document.addEventListener('scroll', () => {
@@ -91,5 +101,8 @@ for(let element of navELements) {
         active.classList.remove('active')
         event.target.classList.add('active')
         active = event.target
+        nav.classList.remove('open')
+        close.classList.add('hidden')
+        hamburger.classList.remove('hidden')
     })
 }
