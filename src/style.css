@@ -13,10 +13,6 @@
     src: url("static/Fonts/Comfortaa/static/Comfortaa-Light.ttf");
 }
     
-     
-    
-    
-
 /* 
 ########################
 General
@@ -86,7 +82,26 @@ nav a.active {
     font-size: 3rem;
 }
 
+/* 
+########################
+Second page
+########################
+*/ 
 
+#second-page-title {
+    padding: 2rem;
+}
+
+.second-page-fields {
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: 17rem 17rem 17rem 17rem 17rem;
+    gap: 1rem;
+}
+
+.second-page-fields div {
+    min-width: 15rem;
+}
 /* 
 ########################
 Three js
@@ -188,5 +203,13 @@ Desktop
 
     .title-box h1 {
             font-size: 3rem;
+    }
+
+    .second-page-fields {
+        padding-right: 13rem;
+        grid-template-columns: 17rem 17rem 17rem 17rem 17rem;
+        gap: 1rem;
+    
+
     }
 }
