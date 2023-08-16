@@ -1,5 +1,6 @@
 import * as contentful from 'contentful'
 import { textField } from './utils/text-field'
+import { activePageNumber } from './utils/page'
 
 const hamburger = document.getElementById('hamburger')
 const close = document.getElementById('close')
@@ -62,13 +63,31 @@ for(let pageItem of secondPage.fields) {
     secondPageFields.appendChild(textField(pageItem.fields.title, pageItem.fields.text))
 }
 
+// Third page
+const thirdPageEl = document.getElementById('third-page')
+
+
+// Fourth page
+const fourthPageEl = document.getElementById('fourth-page')
+
+
 // Scroll to right page
-const scrollToItem = document.querySelector(window.location.hash) 
-const y = scrollToItem.getBoundingClientRect().top + window.scrollY;
+if(window.location.hash) {
+    const scrollToItem = document.querySelector(window.location.hash) 
+    const y = scrollToItem.getBoundingClientRect().top + window.scrollY;
 
-window.scrollTo({top: y, behavior: 'smooth'})
+    window.scrollTo({top: y, behavior: 'smooth'})
+
+}
 
 
+// Get initial page size
+const pageSizes = [
+    landingsPage.offsetHeight,
+    secondPageEl.offsetHeight,
+    thirdPageEl.offsetHeight,
+    fourthPageEl.offsetHeight
+]
 
 // Event listeners
 hamburger.addEventListener('click', () => {
@@ -88,7 +107,8 @@ close.addEventListener('click', () => {
 })
 
 document.addEventListener('scroll', () => {
-    const activeItem = navELements[Math.round(window.scrollY / window.innerHeight)]
+    const activePage = activePageNumber(window.scrollY, pageSizes)
+    const activeItem = navELements[activePage]
     if(activeItem !== active) {
         active.classList.remove('active')
         active = activeItem
