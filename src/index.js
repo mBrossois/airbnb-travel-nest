@@ -1,76 +1,114 @@
-import * as contentful from 'contentful'
 import { textField } from './utils/text-field'
 import { activePageNumber } from './utils/page'
+import { getNavigation, getPages } from './utils/contentful'
+
+let language = 'en-US'
+// let language = 'fr'
 
 const hamburger = document.getElementById('hamburger')
 const close = document.getElementById('close')
 const nav = document.querySelector('nav')
 const navigationBlock = document.querySelector('.navigation-block')
-
-// Contentful
-const client = contentful.createClient({
-    space: import.meta.env.VITE_CONTENTFUL_SPACE,
-    environment: import.meta.env.VITE_CONTENTFUL_ENVIRONMENT,
-    accessToken: import.meta.env.VITE_CONTENTFUL_ACCESSTOKEN,
-})
-
-const navigationResult = await client
-  .getEntries({
-    content_type: 'navigation',
-    limit: '1'
-})
-
-const navigation = navigationResult.items[0].fields.items
-
-const pagesResult = await client
-    .getEntries({
-        content_type: 'page'
-})
-
-const pages = pagesResult.items.map(item => {
-    return item.fields
-})
-  
-for(let navItem of navigation) {
-    // Nav item
-    const link = document.createElement("a")
-
-    link.textContent=navItem
-    link.setAttribute('href', `#${navItem.toLowerCase()}`)
-    nav.appendChild(link)
-}
-
-const navELements = document.querySelectorAll('nav a')
-let active = navELements[0]
-active.classList.add('active')
-
-// Landingspage
+const languageSelect = document.getElementById('languages')
 const landingsPage = document.getElementById('landings-page')
-landingsPage.setAttribute('id', navigation[0].toLowerCase())
 const landingsPageTitle = document.getElementById('landings-page-title')
-landingsPageTitle.textContent = pages.find(page => page.name === navigation[0]).title
-
-// Second page
 const secondPageEl = document.getElementById('second-page')
-secondPageEl.setAttribute('id', navigation[1].toLowerCase())
-const secondPage = pages.find(page => page.name === navigation[1])
-
-const title = document.getElementById('second-page-title')
-title.textContent = secondPage.title
-
 const secondPageFields = document.querySelector('.second-page-fields')
-
-for(let pageItem of secondPage.fields) {
-    secondPageFields.appendChild(textField(pageItem.fields.title, pageItem.fields.text))
-}
-
-// Third page
 const thirdPageEl = document.getElementById('third-page')
-
-
-// Fourth page
 const fourthPageEl = document.getElementById('fourth-page')
 
+let active
+let navigation
+let navELements
+let pageSizes
+
+async function loadAll() {
+    await setupNavigation()
+    await setupText()
+    pageSizes = [
+        landingsPage.offsetHeight,
+        secondPageEl.offsetHeight,
+        thirdPageEl.offsetHeight,
+        fourthPageEl.offsetHeight
+    ]
+}
+
+async function setupNavigation() {
+    navigation = await getNavigation(language)
+
+    for(let navItem in navigation.titles) {
+        // Nav item
+        const link = document.createElement("a")
+    
+        link.textContent = navigation.titles[navItem]
+        link.setAttribute('href', `#${navigation.urls[navItem].toLowerCase()}`)
+        nav.appendChild(link)
+    }
+    
+    navELements = document.querySelectorAll('nav a')
+
+    active = navELements[0]
+    active.classList.add('active')
+
+}
+
+async function setupText() {
+    const pages = await getPages(language)
+    try {
+        const landingsPageTitle = getPage(pages, 0).title
+        const secondPage = getPage(pages, 1)
+        // const thirdPageTitle = getPage(pages, 2).title
+        // const fourthPageTitle = getPage(pages, 3).title
+    
+        setupLandingsPage(landingsPageTitle)
+        setupSecondPage(secondPage)
+        // setupThirdPage(thirdPageTitle)
+        // setupFourthPage(fourthPageTitle)
+
+    } catch(e) {
+        console.log("We couldn't properly load all the pages data.")
+    }
+}
+
+function getPage(pages, number) {
+    return pages.find(page => page.title === navigation.titles[number])
+}
+
+function setupLandingsPage(titleText) {
+    // Landingspage
+    landingsPage.setAttribute('id', navigation.urls[0].toLowerCase())
+    landingsPageTitle.textContent = titleText
+
+}
+
+function setupSecondPage(page) {
+    // Second page
+    secondPageEl.setAttribute('id', navigation.urls[1].toLowerCase())
+
+    const title = document.getElementById('second-page-title')
+    title.textContent = page.title
+
+    for(let pageItem of page.fields) {
+        secondPageFields.appendChild(textField(pageItem.fields.title, pageItem.fields.text))
+    }
+
+}
+
+function setupThirdPage(titleText) {
+    // Third page
+}
+
+function setupFourthPage(titleText) {
+    // Fourth page
+}
+
+await loadAll()
+
+// On language change
+function clearAll() {
+    nav.replaceChildren()
+    secondPageFields.replaceChildren()
+}
 
 // Scroll to right page
 if(window.location.hash) {
@@ -78,17 +116,7 @@ if(window.location.hash) {
     const y = scrollToItem.getBoundingClientRect().top + window.scrollY;
 
     window.scrollTo({top: y, behavior: 'smooth'})
-
 }
-
-
-// Get initial page size
-const pageSizes = [
-    landingsPage.offsetHeight,
-    secondPageEl.offsetHeight,
-    thirdPageEl.offsetHeight,
-    fourthPageEl.offsetHeight
-]
 
 // Event listeners
 hamburger.addEventListener('click', () => {
@@ -127,3 +155,9 @@ for(let element of navELements) {
         hamburger.classList.remove('hidden')
     })
 }
+
+languageSelect.addEventListener('change', (event) => {
+    language = languageSelect.value
+    clearAll()
+    loadAll()
+})
