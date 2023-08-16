@@ -5,6 +5,7 @@ import { activePageNumber } from './utils/page'
 const hamburger = document.getElementById('hamburger')
 const close = document.getElementById('close')
 const nav = document.querySelector('nav')
+const navigationBlock = document.querySelector('.navigation-block')
 
 // Contentful
 const client = contentful.createClient({
@@ -91,7 +92,7 @@ const pageSizes = [
 
 // Event listeners
 hamburger.addEventListener('click', () => {
-    nav.classList.add('open')
+    navigationBlock.classList.add('open')
     hamburger.classList.add('hidden')
     close.classList.remove('hidden')
 
@@ -101,7 +102,7 @@ hamburger.addEventListener('click', () => {
 close.addEventListener('click', () => {
     document.body.style.overflowY = 'scroll'
 
-    nav.classList.remove('open')
+    navigationBlock.classList.remove('open')
     close.classList.add('hidden')
     hamburger.classList.remove('hidden')
 })

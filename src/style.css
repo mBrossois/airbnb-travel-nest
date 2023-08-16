@@ -32,13 +32,32 @@ body {
     overflow-x: hidden;
 }
 
+select {
+    font-family: 'Comfortaa';
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-align: center;
+    padding: .5rem;
+    border: 1px solid rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0);
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+select:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, .5);
+}
+
 /* 
 ########################
 Navigation
 ########################
 */ 
 
-nav {
+.navigation-block {
     display: none;
     position: fixed;
     width: 100%;
@@ -51,8 +70,25 @@ nav {
     background: rgba(255, 255, 255, 1);
 }
 
-nav.open {
+.language-block {
+    width: 100%;
     display: flex;
+    justify-content: center;
+    top: 3rem;
+    position: absolute;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.navigation-block.open {
+    display: block;
 }
 
 nav a {
@@ -202,8 +238,8 @@ Desktop
 */ 
 
 @media screen and (min-width: 769px) {
-    nav {
-        display: flex;
+    .navigation-block {
+        display: block;
         width: 13rem;
         background: rgba(255, 255, 255, 0.4);
         backdrop-filter: blur(3px);
