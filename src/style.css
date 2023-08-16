@@ -126,8 +126,13 @@ Defaults
     overflow: hidden;
 }
 
+.section.second-page {
+    min-height: 100vh;
+    height: auto;
+}
 
-#walkthrough {
+
+#third-page {
     background-color: #ffd7a2;
 }
 
