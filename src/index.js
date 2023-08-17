@@ -3,7 +3,6 @@ import { activePageNumber } from './utils/page'
 import { getNavigation, getPages } from './utils/contentful'
 
 let language = 'en-US'
-// let language = 'fr'
 
 const hamburger = document.getElementById('hamburger')
 const close = document.getElementById('close')
