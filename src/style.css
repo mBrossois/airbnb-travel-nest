@@ -136,10 +136,6 @@ Second page
 ########################
 */ 
 
-#second-page-title {
-    padding: 2rem;
-}
-
 .second-page-fields {
     padding: 0 3rem;
     display: grid;
@@ -225,6 +221,10 @@ Defaults
     animation: carrousel-image 20s ease-in-out infinite;
 }
 
+.default-title {
+    padding: 2rem;
+}
+
 @keyframes carrousel-image {
     0%, 33% {
         transform: translateX(0);
@@ -238,6 +238,19 @@ Defaults
     100% {
         transform: translateX(0);
     }
+}
+
+/* 
+########################
+Map
+########################
+*/ 
+
+#map {
+    height: 28rem;
+    width: 60rem;
+    margin-left: 2rem;
+    z-index: 10;
 }
 
 /* 
@@ -265,5 +278,22 @@ Desktop
     .second-page-fields {
         padding-right: 13rem;    
 
+    }
+
+    #map {
+        height: 80vh;
+        width: 48rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    #map {
+        width: 74rem;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    #map {
+        width: 125rem;
     }
 }

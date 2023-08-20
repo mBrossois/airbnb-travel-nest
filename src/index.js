@@ -1,6 +1,7 @@
 import { textField } from './utils/text-field'
 import { activePageNumber } from './utils/page'
 import { getNavigation, getPages } from './utils/contentful'
+import { createMap, addMarker } from './utils/map'
 
 let language = 'en-US'
 
@@ -56,13 +57,13 @@ async function setupText() {
     try {
         const landingsPageTitle = getPage(pages, 0).title
         const secondPage = getPage(pages, 1)
-        // const thirdPageTitle = getPage(pages, 2).title
-        // const fourthPageTitle = getPage(pages, 3).title
+        const thirdPageTitle = getPage(pages, 2).title
+        const fourthPageTitle = getPage(pages, 3).title
     
         setupLandingsPage(landingsPageTitle)
         setupSecondPage(secondPage)
-        // setupThirdPage(thirdPageTitle)
-        // setupFourthPage(fourthPageTitle)
+        setupThirdPage(thirdPageTitle)
+        setupFourthPage(fourthPageTitle)
 
     } catch(e) {
         console.log("We couldn't properly load all the pages data.")
@@ -95,10 +96,37 @@ function setupSecondPage(page) {
 
 function setupThirdPage(titleText) {
     // Third page
+    thirdPageEl.setAttribute('id', navigation.urls[2].toLowerCase())
 }
 
 function setupFourthPage(titleText) {
     // Fourth page
+    fourthPageEl.setAttribute('id', navigation.urls[3].toLowerCase())
+
+    const title = document.getElementById('fourth-page-title')
+    title.textContent = titleText
+
+    setupLeaflet(fourthPageEl)
+}
+
+function setupLeaflet(pageElement) {
+    const mapEl = document.createElement('div')
+    mapEl.setAttribute('id', 'map')
+
+    pageElement.appendChild(mapEl)
+
+    createMap()
+    addMarker()
+
+    // const map = L.map('map').setView([45.75477011772832, 4.842571212291667], 15)
+
+    // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // maxZoom: 19,
+    // attribution: '© OpenStreetMap'
+    // }).addTo(map)
+
+    // L.marker([45.75477011772832, 4.842571212291667], {alt: 'Airbnb'}).addTo(map).bindPopup('The Airbnb')
+    
 }
 
 await loadAll()
@@ -149,7 +177,7 @@ for(let element of navELements) {
         active.classList.remove('active')
         event.target.classList.add('active')
         active = event.target
-        nav.classList.remove('open')
+        navigationBlock.classList.remove('open')
         close.classList.add('hidden')
         hamburger.classList.remove('hidden')
     })
