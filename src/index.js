@@ -1,7 +1,7 @@
 import { textField } from './utils/text-field'
 import { activePageNumber } from './utils/page'
 import { getNavigation, getPages } from './utils/contentful'
-import { createMap, addMarker } from './utils/map'
+import { createMap, addMarkers } from './utils/map'
 
 let language = 'en-US'
 
@@ -58,7 +58,7 @@ async function setupText() {
         const landingsPageTitle = getPage(pages, 0).title
         const secondPage = getPage(pages, 1)
         const thirdPageTitle = getPage(pages, 2).title
-        const fourthPageTitle = getPage(pages, 3).title
+        const fourthPageTitle = getPage(pages, 3)
     
         setupLandingsPage(landingsPageTitle)
         setupSecondPage(secondPage)
@@ -99,24 +99,27 @@ function setupThirdPage(titleText) {
     thirdPageEl.setAttribute('id', navigation.urls[2].toLowerCase())
 }
 
-function setupFourthPage(titleText) {
+function setupFourthPage(pageData) {
     // Fourth page
     fourthPageEl.setAttribute('id', navigation.urls[3].toLowerCase())
 
     const title = document.getElementById('fourth-page-title')
-    title.textContent = titleText
+    title.textContent = pageData.title
 
-    setupLeaflet(fourthPageEl)
+    if(pageData.useMap) {
+        setupLeaflet(fourthPageEl, pageData.mapMarkers)
+    }
+
 }
 
-function setupLeaflet(pageElement) {
+function setupLeaflet(pageElement, mapMarkers) {
     const mapEl = document.createElement('div')
     mapEl.setAttribute('id', 'map')
 
     pageElement.appendChild(mapEl)
 
     createMap()
-    addMarker()
+    addMarkers(mapMarkers)
 
     // const map = L.map('map').setView([45.75477011772832, 4.842571212291667], 15)
 

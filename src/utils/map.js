@@ -1,4 +1,5 @@
 import L from 'leaflet'
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 let map
 
@@ -11,11 +12,28 @@ export function createMap() {
     }).addTo(map)
 }
 
-export function addMarker() {
-    L.marker([45.75477011772832, 4.842571212291667], {alt: 'Airbnb', icon: airbnbIcon}).addTo(map).bindPopup('The Airbnb')
-    L.marker([45.75481156813241, 4.843117306879479], {alt: 'La Faute aux Ours', icon: barIcon}).addTo(map).bindPopup('La Faute aux Ours')
-    L.marker([45.75345486180312, 4.839672422418402], {alt: 'Thaï Thaï Restaurant', icon: restaurantIcon}).addTo(map).bindPopup('Thaï Thaï Restaurant')
-    L.marker([45.76267546467228, 4.822160933470721], {alt: 'Notre-Dame de Fourvière', icon: activityIcon}).addTo(map).bindPopup('Notre-Dame de Fourvière')
+export function addMarkers(mapMarkers) {
+    for(let marker of mapMarkers) {
+        switch(marker.fields.markerType) {
+            case 'airbnb':
+                addMarker(marker.fields, airbnbIcon)    
+                break
+            case 'restaurant':
+                addMarker(marker.fields, restaurantIcon)
+                break
+            case 'bar':
+                addMarker(marker.fields, barIcon)
+                break
+            case 'activity':
+                addMarker(marker.fields, activityIcon)
+                break
+        }
+    }
+}
+
+export function addMarker(marker, icon) {
+    L.marker([marker.location.lat, marker.location.lon], {alt: marker.title, icon: icon}).addTo(map).bindPopup(documentToHtmlString(marker.description))
+    
 }
 
 const customMarker = L.Icon.extend({

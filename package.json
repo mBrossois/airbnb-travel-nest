@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^16.1.1",
     "contentful": "^10.4.2",
     "leaflet": "^1.9.4",
     "lil-gui": "^0.18.2",
