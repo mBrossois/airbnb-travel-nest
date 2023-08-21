@@ -1,5 +1,10 @@
 import L from 'leaflet'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import '../static/images/icons/pointer-bar.png'
+import '../static/images/icons/pointer-airbnb.png'
+import '../static/images/icons/pointer-restaurant.png'
+import '../static/images/icons/pointer-activities.png'
+import '../static/images/icons/pointer-shadow.png'
 
 let map
 
@@ -47,7 +52,7 @@ const customMarker = L.Icon.extend({
     }
 });
 
-const airbnbIcon = new customMarker({iconUrl: 'static/images/icons/pointer-airbnb.png',});
-const restaurantIcon = new customMarker({iconUrl: 'static/images/icons/pointer-restaurant.png',});
-const barIcon = new customMarker({iconUrl: 'static/images/icons/pointer-bar.png',});
-const activityIcon = new customMarker({iconUrl: 'static/images/icons/pointer-activities.png',});
+const airbnbIcon = new customMarker({iconUrl: 'static/images/icons/pointer-airbnb.png'});
+const restaurantIcon = new customMarker({iconUrl: 'static/images/icons/pointer-restaurant.png'});
+const barIcon = new customMarker({iconUrl: 'static/images/icons/pointer-bar.png'});
+const activityIcon = new customMarker({iconUrl: 'static/images/icons/pointer-activities.png'});

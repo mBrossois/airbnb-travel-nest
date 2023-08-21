@@ -2,7 +2,7 @@ const isCodeSandbox = 'SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in proc
 
 export default {
     root: 'src/',
-    publicDir: '../static/',
+    publicDir: 'src/static/',
     base: './',
     server:
     {
@@ -13,6 +13,9 @@ export default {
     {
         outDir: '../dist',
         emptyOutDir: true,
-        sourcemap: true
+        sourcemap: true,
+        rollupOutputOptions: {
+            assetFileNames: 'assets/[name][extname]'
+          }
     }
 }
