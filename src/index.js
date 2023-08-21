@@ -132,62 +132,65 @@ function setupLeaflet(pageElement, mapMarkers) {
     
 }
 
-await loadAll()
+(async () => {
+    await loadAll()
 
-// On language change
-function clearAll() {
-    nav.replaceChildren()
-    secondPageFields.replaceChildren()
-}
-
-// Scroll to right page
-if(window.location.hash) {
-    const scrollToItem = document.querySelector(window.location.hash) 
-    const y = scrollToItem.getBoundingClientRect().top + window.scrollY;
-
-    window.scrollTo({top: y, behavior: 'smooth'})
-}
-
-// Event listeners
-hamburger.addEventListener('click', () => {
-    navigationBlock.classList.add('open')
-    hamburger.classList.add('hidden')
-    close.classList.remove('hidden')
-
-    document.body.style.overflowY = 'hidden'
-})
-
-close.addEventListener('click', () => {
-    document.body.style.overflowY = 'scroll'
-
-    navigationBlock.classList.remove('open')
-    close.classList.add('hidden')
-    hamburger.classList.remove('hidden')
-})
-
-document.addEventListener('scroll', () => {
-    const activePage = activePageNumber(window.scrollY, pageSizes)
-    const activeItem = navELements[activePage]
-    if(activeItem !== active) {
-        active.classList.remove('active')
-        active = activeItem
-        active.classList.add('active')
+    // On language change
+    function clearAll() {
+        nav.replaceChildren()
+        secondPageFields.replaceChildren()
     }
-})
 
-for(let element of navELements) {
-    element.addEventListener('click', (event) => {
-        active.classList.remove('active')
-        event.target.classList.add('active')
-        active = event.target
+    // Scroll to right page
+    if(window.location.hash) {
+        const scrollToItem = document.querySelector(window.location.hash) 
+        const y = scrollToItem.getBoundingClientRect().top + window.scrollY;
+
+        window.scrollTo({top: y, behavior: 'smooth'})
+    }
+
+    // Event listeners
+    hamburger.addEventListener('click', () => {
+        navigationBlock.classList.add('open')
+        hamburger.classList.add('hidden')
+        close.classList.remove('hidden')
+
+        document.body.style.overflowY = 'hidden'
+    })
+
+    close.addEventListener('click', () => {
+        document.body.style.overflowY = 'scroll'
+
         navigationBlock.classList.remove('open')
         close.classList.add('hidden')
         hamburger.classList.remove('hidden')
     })
-}
 
-languageSelect.addEventListener('change', (event) => {
-    language = languageSelect.value
-    clearAll()
-    loadAll()
-})
+    document.addEventListener('scroll', () => {
+        const activePage = activePageNumber(window.scrollY, pageSizes)
+        const activeItem = navELements[activePage]
+        if(activeItem !== active) {
+            active.classList.remove('active')
+            active = activeItem
+            active.classList.add('active')
+        }
+    })
+
+    for(let element of navELements) {
+        element.addEventListener('click', (event) => {
+            active.classList.remove('active')
+            event.target.classList.add('active')
+            active = event.target
+            navigationBlock.classList.remove('open')
+            close.classList.add('hidden')
+            hamburger.classList.remove('hidden')
+        })
+    }
+
+    languageSelect.addEventListener('change', (event) => {
+        language = languageSelect.value
+        clearAll()
+        loadAll()
+    })
+
+})()
