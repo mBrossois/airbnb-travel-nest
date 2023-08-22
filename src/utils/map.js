@@ -1,10 +1,10 @@
 import L from 'leaflet'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import '../static/images/icons/pointer-bar.png'
-import '../static/images/icons/pointer-airbnb.png'
-import '../static/images/icons/pointer-restaurant.png'
-import '../static/images/icons/pointer-activities.png'
-import '../static/images/icons/pointer-shadow.png'
+import barImg from  '../static/images/icons/pointer-bar.png'
+import airbnbImg from '../static/images/icons/pointer-airbnb.png'
+import restaurantImg from  '../static/images/icons/pointer-restaurant.png'
+import activityImg from '../static/images/icons/pointer-activities.png'
+import shadowImg from '../static/images/icons/pointer-shadow.png'
 
 let map
 
@@ -43,7 +43,7 @@ export function addMarker(marker, icon) {
 
 const customMarker = L.Icon.extend({
     options: {
-        shadowUrl: 'static/images/icons/pointer-shadow.png',
+        shadowUrl: shadowImg,
         iconSize:     [28, 41], // size of the icon
         shadowSize:   [28, 41], // size of the shadow
         iconAnchor:   [14, 41], // point of the icon which will correspond to marker's location
@@ -52,7 +52,7 @@ const customMarker = L.Icon.extend({
     }
 });
 
-const airbnbIcon = new customMarker({iconUrl: 'static/images/icons/pointer-airbnb.png'});
-const restaurantIcon = new customMarker({iconUrl: 'static/images/icons/pointer-restaurant.png'});
-const barIcon = new customMarker({iconUrl: 'static/images/icons/pointer-bar.png'});
-const activityIcon = new customMarker({iconUrl: 'static/images/icons/pointer-activities.png'});
+const airbnbIcon = new customMarker({iconUrl: airbnbImg});
+const restaurantIcon = new customMarker({iconUrl: restaurantImg});
+const barIcon = new customMarker({iconUrl: barImg});
+const activityIcon = new customMarker({iconUrl: activityImg});
