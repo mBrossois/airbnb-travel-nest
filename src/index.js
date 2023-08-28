@@ -120,16 +120,6 @@ function setupLeaflet(pageElement, mapMarkers) {
 
     createMap()
     addMarkers(mapMarkers)
-
-    // const map = L.map('map').setView([45.75477011772832, 4.842571212291667], 15)
-
-    // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    // maxZoom: 19,
-    // attribution: '© OpenStreetMap'
-    // }).addTo(map)
-
-    // L.marker([45.75477011772832, 4.842571212291667], {alt: 'Airbnb'}).addTo(map).bindPopup('The Airbnb')
-    
 }
 
 (async () => {
