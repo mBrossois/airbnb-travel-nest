@@ -130,6 +130,7 @@ nav a.active {
 
 }
 
+
 /* 
 ########################
 Second page
@@ -173,7 +174,10 @@ Defaults
 }
 
 
-#third-page {
+.section.third-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #ffd7a2;
 }
 
@@ -183,16 +187,9 @@ Defaults
     overflow: hidden;
 }
 
-.carrousel_filter {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(217, 188, 130, 0.2);
-}
-
 .title-box {
     position: absolute;
-    bottom: 5rem;
+    bottom: 7.2rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -200,12 +197,37 @@ Defaults
     align-items: center;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(3px);
+    min-width: 12rem;
+    text-align: center;
 }
 
 .title-box h1 {
     text-wrap: nowrap;
-    font-size: 2rem;
-    padding: 2rem;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+}
+
+.landings-page #bookButton {
+    position: absolute;
+    background: #1ec11e73;
+    color: white;
+    border: none;
+    left: 50%;
+    bottom: 2rem;
+    min-width: 12rem;
+    text-align: center;
+    transform: translateX(-50%);
+    backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    text-decoration: none;
+    text-wrap: nowrap;
+    font-size: 1.5rem;
+    padding: 1.5rem 0;
+}
+
+.landings-page #bookButton:hover {
+    cursor: pointer;
+    background-color: #1ec11e;
 }
 
 .corrousel_container {
@@ -259,24 +281,49 @@ Desktop
 */ 
 
 @media screen and (min-width: 769px) {
+    .landings-page #bookButton {
+        bottom: 5rem;
+        left: 27rem;
+        font-size: 3rem;
+        padding: 2rem;
+        transform: translateX(0);
+
+    }
+
     .navigation-block {
         display: block;
         width: 13rem;
         background: rgba(255, 255, 255, 0.4);
         backdrop-filter: blur(3px);
+
     }
 
     #hamburger, #close {
         display: none;
     }
 
+    .title-box {
+        bottom: 5rem;
+        left: 5rem;
+        transform: translateX(0);
+    }
+
     .title-box h1 {
+            padding: 2rem;
             font-size: 3rem;
     }
 
     .second-page-fields {
         padding-right: 13rem;    
 
+    }
+
+    .section.third-page {
+        display: block;
+    }
+
+    .section.third-page canvas{
+        margin-left: 2rem;
     }
 
     #map {
@@ -292,10 +339,36 @@ Desktop
     #map {
         width: 74rem;
     }
+
+    .title-box {
+        left: 17rem;
+    }
+
+    .landings-page #bookButton {
+        left: 39rem;
+    }
 }
 
 @media screen and (min-width: 2000px) {
     #map {
         width: 125rem;
     }
+
+    .title-box {
+        left: 53rem;
+    }
+
+    .landings-page #bookButton {
+        left: 75rem;
+    }
+}
+
+/* 
+########################
+Three js
+########################
+*/ 
+
+.section.third-page canvas {
+    border: 5px solid black;
 }
