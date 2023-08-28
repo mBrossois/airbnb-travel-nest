@@ -247,9 +247,8 @@ Map
 */ 
 
 #map {
-    height: 28rem;
-    width: 60rem;
-    margin-left: 2rem;
+    height: 100%;
+    width: 100%;
     z-index: 10;
 }
 
@@ -281,6 +280,9 @@ Desktop
     }
 
     #map {
+
+        margin-left: 2rem;
+
         height: 80vh;
         width: 48rem;
     }
