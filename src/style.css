@@ -36,6 +36,7 @@ select {
     font-family: 'Comfortaa';
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
     text-align: center;
     padding: .5rem;
     border: 1px solid rgba(255, 255, 255, 0);
@@ -246,6 +247,23 @@ Defaults
 .default-title {
     padding: 2rem;
 }
+
+select#imagesNav {
+    -webkit-appearance: auto;
+    -moz-appearance: auto;
+    appearance: auto;
+    position: absolute;
+    left: 3rem;
+    margin-top: 1rem;
+
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(3px);
+}
+
+select#imagesNav:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
 
 @keyframes carrousel-image {
     0%, 33% {

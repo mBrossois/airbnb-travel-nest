@@ -59,8 +59,14 @@
 
     <div id="third-page" class="3d-image section third-page">
         <h1 id="third-page-title" class="default-title"></h1>
-        <canvas class="webgl"></canvas>
-        <script type="module" src="./utils/threejs-script.js"></script>
+        <div class="3d-images">
+            <select name="imagesNav" id="imagesNav">
+                <option value="hallway">Hallway</option>
+                <option value="office">Office</option>
+            </select>
+            <canvas class="webgl"></canvas>
+            <script type="module" src="./utils/threejs-script.js"></script>    
+        </div>
     </div>
 
     <div id="fourth-page" class="section fourth-page">
