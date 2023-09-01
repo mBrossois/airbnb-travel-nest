@@ -22,15 +22,47 @@ const scene = new THREE.Scene()
 // Geometry
 const geometry = new THREE.SphereGeometry(15, 32, 32)
 
-// Load picture
-var texture = new THREE.TextureLoader().load( "/static/images/3dImages/3dImageFirst.jpeg" );
+function getTexture(loader, url) {
+    const texture = loader.load(url)
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.repeat.x = - 1;
 
-// Material
-var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.BackSide } );
+    // Material
+    const material = new THREE.MeshBasicMaterial( { 
+        map: texture, 
+        side: THREE.BackSide,
+    } );
+
+    material.map.minFilter = THREE.NearestFilter
+
+
+    return material
+}
+
+// Load picture
+const textureLoader = new THREE.TextureLoader()
+
+const materials = {
+    hallway: getTexture(textureLoader, "/static/images/3dImages/3dImageHallway.jpeg" ),
+    office: getTexture(textureLoader, "/static/images/3dImages/3dImageOffice.jpeg" ),
+    kitchen: getTexture(textureLoader, "/static/images/3dImages/3dImageKitchen.jpeg" ),
+    livingRoomOne: getTexture(textureLoader, "/static/images/3dImages/3dImageLivingroomOne.jpeg" ),
+    livingRoomTwo: getTexture(textureLoader, "/static/images/3dImages/3dImageLivingroomTwo.jpeg" ),
+    bedroom: getTexture(textureLoader, "/static/images/3dImages/3dImageBedroom.jpeg" ),
+    bathroomOne: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomOne.jpeg" ),
+    bathroomTwo: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomTwo.jpeg" ),
+    bathroomThree: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomThree.jpeg" ),
+    bathroomFour: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomFour.jpeg" )
+}
 
 // Mesh
-const mesh = new THREE.Mesh(geometry, material)
+const mesh = new THREE.Mesh(geometry, materials.hallway)
 scene.add(mesh)
+
+const imagesNav = document.getElementById('imagesNav')
+imagesNav.addEventListener('change', (event) => {
+    mesh.material = materials[imagesNav.value]
+})
 
 /**
  * Sizes

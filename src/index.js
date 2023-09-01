@@ -16,6 +16,8 @@ const secondPageEl = document.getElementById('second-page')
 const secondPageFields = document.querySelector('.second-page-fields')
 const thirdPageEl = document.getElementById('third-page')
 const fourthPageEl = document.getElementById('fourth-page')
+const imagesNav = document.getElementById('imagesNav')
+
 
 let active
 let navigation
@@ -25,12 +27,35 @@ let pageSizes
 async function loadAll() {
     await setupNavigation()
     await setupText()
+    setupImagesNav()
     pageSizes = [
         landingsPage.offsetHeight,
         secondPageEl.offsetHeight,
         thirdPageEl.offsetHeight,
         fourthPageEl.offsetHeight
     ]
+}
+
+function setupImagesNav() {
+
+    const roomList = [
+        { enText: 'Hallway', frText: 'Couloir', value: 'hallway'},
+        { enText: 'Kitchen', frText: 'Cuisine', value: 'kitchen'},
+        { enText: 'Livingroom one', frText: 'Salon un', value: 'livingRoomOne'},
+        { enText: 'Livingroom two', frText: 'Salon deux', value: 'livingRoomTwo'},
+        { enText: 'Bedroom', frText: 'Chambre', value: 'bedroom'},
+        { enText: 'Bathroom one', frText: 'Salle de bain un', value: 'bathroomOne'},
+        { enText: 'Bathroom two', frText: 'Salle de bain deux', value: 'bathroomTwo'},
+        { enText: 'Bathroom three', frText: 'Salle de bain trois', value: 'bathroomThree'},
+        { enText: 'Bathroom four', frText: 'Salle de bain quatre', value: 'bathroomFour'},
+    ]    
+    for(let room of roomList) {
+        const option = document.createElement("option")
+        option.setAttribute('value', room.value )
+        option.textContent = language === 'en-US' ? room.enText : room.frText
+        imagesNav.appendChild(option)
+    }
+
 }
 
 async function setupNavigation() {
