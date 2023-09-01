@@ -20,12 +20,13 @@ const scene = new THREE.Scene()
  * Test mesh
  */
 // Geometry
-const geometry = new THREE.PlaneGeometry(1, 1, 32, 32)
+const geometry = new THREE.SphereGeometry(15, 32, 32)
+
+// Load picture
+var texture = new THREE.TextureLoader().load( "/static/images/3dImages/3dImageFirst.jpeg" );
 
 // Material
-const material = new THREE.MeshBasicMaterial({
-    color: 'blue'
-})
+var material = new THREE.MeshBasicMaterial( { map: texture, side: THREE.BackSide } );
 
 // Mesh
 const mesh = new THREE.Mesh(geometry, material)
@@ -64,6 +65,8 @@ scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, canvas)
+controls.minDistance = 1
+controls.maxDistance = 12
 controls.enableDamping = true
 
 /**
