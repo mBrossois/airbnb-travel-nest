@@ -1,15 +1,19 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import * as dat from 'lil-gui'
-// import testVertexShader from './shaders/test/vertex.glsl'
-// import testFragmentShader from './shaders/test/fragment.glsl'
+import hallwayImg from  '../static/images/3dImages/3dImageHallway.jpeg'
+import officeImg from '../static/images/3dImages/3dImageOffice.jpeg'
+import kitchenImg from  '../static/images/3dImages/3dImageKitchen.jpeg'
+import livingRoomOneImg from '../static/images/3dImages/3dImageLivingroomOne.jpeg'
+import livingRoomTwoImg from '../static/images/3dImages/3dImageLivingroomTwo.jpeg'
+import bedroomImg from '../static/images/3dImages/3dImageBedroom.jpeg'
+import bathroomOneImg from '../static/images/3dImages/3dImageBathroomOne.jpeg'
+import bathroomTwoImg from '../static/images/3dImages/3dImageBathroomTwo.jpeg'
+import bathroomThreeImg from '../static/images/3dImages/3dImageBathroomThree.jpeg'
+import bathroomFourImg from '../static/images/3dImages/3dImageBathroomFour.jpeg'
 
 /**
  * Base
  */
-// Debug
-// const gui = new dat.GUI()
-
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -43,16 +47,16 @@ function getTexture(loader, url) {
 const textureLoader = new THREE.TextureLoader()
 
 const materials = {
-    hallway: getTexture(textureLoader, "/static/images/3dImages/3dImageHallway.jpeg" ),
-    office: getTexture(textureLoader, "/static/images/3dImages/3dImageOffice.jpeg" ),
-    kitchen: getTexture(textureLoader, "/static/images/3dImages/3dImageKitchen.jpeg" ),
-    livingRoomOne: getTexture(textureLoader, "/static/images/3dImages/3dImageLivingroomOne.jpeg" ),
-    livingRoomTwo: getTexture(textureLoader, "/static/images/3dImages/3dImageLivingroomTwo.jpeg" ),
-    bedroom: getTexture(textureLoader, "/static/images/3dImages/3dImageBedroom.jpeg" ),
-    bathroomOne: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomOne.jpeg" ),
-    bathroomTwo: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomTwo.jpeg" ),
-    bathroomThree: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomThree.jpeg" ),
-    bathroomFour: getTexture(textureLoader, "/static/images/3dImages/3dImageBathroomFour.jpeg" )
+    hallway: getTexture(textureLoader, hallwayImg ),
+    office: getTexture(textureLoader, officeImg ),
+    kitchen: getTexture(textureLoader, kitchenImg ),
+    livingRoomOne: getTexture(textureLoader, livingRoomOneImg ),
+    livingRoomTwo: getTexture(textureLoader, livingRoomTwoImg ),
+    bedroom: getTexture(textureLoader, bedroomImg ),
+    bathroomOne: getTexture(textureLoader, bathroomOneImg ),
+    bathroomTwo: getTexture(textureLoader, bathroomTwoImg ),
+    bathroomThree: getTexture(textureLoader, bathroomThreeImg ),
+    bathroomFour: getTexture(textureLoader, bathroomFourImg )
 }
 
 // Mesh

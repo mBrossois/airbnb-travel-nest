@@ -29,7 +29,7 @@ async function loadAll() {
     await setupText()
     setupImagesNav()
     pageSizes = [
-        landingsPage.offsetHeight,
+        landingsPage.offsetHeight - 10,
         secondPageEl.offsetHeight,
         thirdPageEl.offsetHeight,
         fourthPageEl.offsetHeight
