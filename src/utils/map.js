@@ -4,16 +4,26 @@ import barImg from  '../static/images/icons/pointer-bar.png'
 import airbnbImg from '../static/images/icons/pointer-airbnb.png'
 import restaurantImg from  '../static/images/icons/pointer-restaurant.png'
 import activityImg from '../static/images/icons/pointer-activities.png'
+import croissantImg from '../static/images/icons/pointer-croissants.png'
 import shadowImg from '../static/images/icons/pointer-shadow.png'
 
 let map
+let originalTile
+let baseMaps
+let overlayLayer
+const airbnbs = []
+const restaurants = []
+const bars = []
+const activities = []
+const bakeries = []
 
 export function createMap() {
     map = L.map('map').setView([45.75477011772832, 4.842571212291667], 14)
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    originalTile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '© OpenStreetMap'
+    attribution: '© OpenStreetMap',
+    layers: (baseMaps, overlayLayer)
     }).addTo(map)
 }
 
@@ -21,23 +31,48 @@ export function addMarkers(mapMarkers) {
     for(let marker of mapMarkers) {
         switch(marker.fields.markerType) {
             case 'airbnb':
-                addMarker(marker.fields, airbnbIcon)    
+                airbnbs.push(addMarker(marker.fields, airbnbIcon))
                 break
             case 'restaurant':
-                addMarker(marker.fields, restaurantIcon)
+                restaurants.push(addMarker(marker.fields, restaurantIcon))
                 break
             case 'bar':
-                addMarker(marker.fields, barIcon)
+                bars.push(addMarker(marker.fields, barIcon))
                 break
             case 'activity':
-                addMarker(marker.fields, activityIcon)
-                break
+                activities.push(addMarker(marker.fields, activityIcon))
+                break;
+            case 'bakery':
+                bakeries.push(addMarker(marker.fields, croissantIcon))
         }
     }
 }
 
+export function setupLayers() {
+    baseMaps = {
+        "OpenStreetMap": originalTile,
+    };
+    
+
+    const airbnbsLayer = L.layerGroup(airbnbs).addTo(map)
+    const restaurantsLayer = L.layerGroup(restaurants).addTo(map)
+    const barsLayer = L.layerGroup(bars).addTo(map)
+    const activitiesLayer = L.layerGroup(activities).addTo(map)
+    const bakeriesLayer = L.layerGroup(bakeries).addTo(map)
+
+    overlayLayer = {
+        "Airbnbs": airbnbsLayer,
+        "Restaurants": restaurantsLayer,
+        "Bars": barsLayer,
+        "Activities": activitiesLayer,
+        "Bakeries": bakeriesLayer
+    }
+    
+    L.control.layers(baseMaps, overlayLayer).addTo(map);
+}
+
 export function addMarker(marker, icon) {
-    L.marker([marker.location.lat, marker.location.lon], {alt: marker.title, icon: icon}).addTo(map).bindPopup(documentToHtmlString(marker.description))
+    return L.marker([marker.location.lat, marker.location.lon], {alt: marker.title, icon: icon}).bindPopup(documentToHtmlString(marker.description))
     
 }
 
@@ -56,3 +91,4 @@ const airbnbIcon = new customMarker({iconUrl: airbnbImg});
 const restaurantIcon = new customMarker({iconUrl: restaurantImg});
 const barIcon = new customMarker({iconUrl: barImg});
 const activityIcon = new customMarker({iconUrl: activityImg});
+const croissantIcon = new customMarker({iconUrl: croissantImg});

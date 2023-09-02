@@ -1,7 +1,7 @@
 import { textField } from './utils/text-field'
 import { activePageNumber } from './utils/page'
 import { getNavigation, getPages } from './utils/contentful'
-import { createMap, addMarkers } from './utils/map'
+import { createMap, addMarkers, setupLayers } from './utils/map'
 
 let language = 'en-US'
 
@@ -145,6 +145,7 @@ function setupLeaflet(pageElement, mapMarkers) {
 
     createMap()
     addMarkers(mapMarkers)
+    setupLayers()
 }
 
 (async () => {
