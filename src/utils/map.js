@@ -1,4 +1,4 @@
-import L from 'leaflet'
+import L, { layerGroup } from 'leaflet'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import barImg from  '../static/images/icons/pointer-bar.png'
 import airbnbImg from '../static/images/icons/pointer-airbnb.png'
@@ -19,7 +19,6 @@ const bakeries = []
 
 export function createMap() {
     map = L.map('map').setView([45.75477011772832, 4.842571212291667], 14)
-
     originalTile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap',
@@ -48,7 +47,7 @@ export function addMarkers(mapMarkers) {
     }
 }
 
-export function setupLayers() {
+export function setupLayers(language) {
     baseMaps = {
         "OpenStreetMap": originalTile,
     };
@@ -60,15 +59,22 @@ export function setupLayers() {
     const activitiesLayer = L.layerGroup(activities).addTo(map)
     const bakeriesLayer = L.layerGroup(bakeries).addTo(map)
 
+    const activitiesTitle = language === 'en-US' ? "Activities" : "Activités"
+    const bakeriesTitle = language === 'en-US' ? "bakeries" : "Boulangeries"
+
     overlayLayer = {
         "Airbnbs": airbnbsLayer,
         "Restaurants": restaurantsLayer,
         "Bars": barsLayer,
-        "Activities": activitiesLayer,
-        "Bakeries": bakeriesLayer
+        [activitiesTitle]: activitiesLayer,
+        [bakeriesTitle]: bakeriesLayer
     }
     
     L.control.layers(baseMaps, overlayLayer).addTo(map);
+}
+
+export function resetMap() {
+    map.remove()
 }
 
 export function addMarker(marker, icon) {

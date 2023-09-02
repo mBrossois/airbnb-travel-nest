@@ -1,7 +1,7 @@
 import { textField } from './utils/text-field'
 import { activePageNumber } from './utils/page'
 import { getNavigation, getPages } from './utils/contentful'
-import { createMap, addMarkers, setupLayers } from './utils/map'
+import { createMap, addMarkers, setupLayers, resetMap } from './utils/map'
 
 let language = 'en-US'
 
@@ -148,7 +148,7 @@ function setupLeaflet(pageElement, mapMarkers) {
 
     createMap()
     addMarkers(mapMarkers)
-    setupLayers()
+    setupLayers(language)
 }
 
 (async () => {
@@ -159,6 +159,7 @@ function setupLeaflet(pageElement, mapMarkers) {
         nav.replaceChildren()
         secondPageFields.replaceChildren()
         imagesNav.replaceChildren()
+        resetMap()
     }
 
     // Scroll to right page
