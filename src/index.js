@@ -155,6 +155,7 @@ function setupLeaflet(pageElement, mapMarkers) {
     function clearAll() {
         nav.replaceChildren()
         secondPageFields.replaceChildren()
+        imagesNav.replaceChildren()
     }
 
     // Scroll to right page
