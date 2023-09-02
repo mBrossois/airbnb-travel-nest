@@ -1,7 +1,7 @@
 import { textField } from './utils/text-field'
 import { activePageNumber } from './utils/page'
 import { getNavigation, getPages } from './utils/contentful'
-import { createMap, addMarkers, setupLayers } from './utils/map'
+import { createMap, addMarkers, setupLayers, resetMap } from './utils/map'
 
 let language = 'en-US'
 
@@ -104,6 +104,9 @@ function setupLandingsPage(titleText) {
     landingsPage.setAttribute('id', navigation.urls[0].toLowerCase())
     landingsPageTitle.textContent = titleText
 
+    const bookButton = document.getElementById('bookButton')
+    bookButton.textContent = language === 'en-US' ? 'Book now!' : 'Reserve!'
+
 }
 
 function setupSecondPage(page) {
@@ -122,6 +125,9 @@ function setupSecondPage(page) {
 function setupThirdPage(titleText) {
     // Third page
     thirdPageEl.setAttribute('id', navigation.urls[2].toLowerCase())
+
+    const title = document.getElementById('third-page-title')
+    title.textContent = titleText
 }
 
 function setupFourthPage(pageData) {
@@ -145,7 +151,7 @@ function setupLeaflet(pageElement, mapMarkers) {
 
     createMap()
     addMarkers(mapMarkers)
-    setupLayers()
+    setupLayers(language)
 }
 
 (async () => {
@@ -155,6 +161,8 @@ function setupLeaflet(pageElement, mapMarkers) {
     function clearAll() {
         nav.replaceChildren()
         secondPageFields.replaceChildren()
+        imagesNav.replaceChildren()
+        resetMap()
     }
 
     // Scroll to right page
