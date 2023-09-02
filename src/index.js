@@ -122,6 +122,9 @@ function setupSecondPage(page) {
 function setupThirdPage(titleText) {
     // Third page
     thirdPageEl.setAttribute('id', navigation.urls[2].toLowerCase())
+
+    const title = document.getElementById('third-page-title')
+    title.textContent = titleText
 }
 
 function setupFourthPage(pageData) {
