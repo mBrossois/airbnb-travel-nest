@@ -104,6 +104,9 @@ function setupLandingsPage(titleText) {
     landingsPage.setAttribute('id', navigation.urls[0].toLowerCase())
     landingsPageTitle.textContent = titleText
 
+    const bookButton = document.getElementById('bookButton')
+    bookButton.textContent = language === 'en-US' ? 'Book now!' : 'Reserve!'
+
 }
 
 function setupSecondPage(page) {
