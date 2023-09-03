@@ -286,6 +286,11 @@ Map
 ########################
 */ 
 
+.fourth-page {
+    display: flex;
+    flex-direction: column;
+}
+
 #map {
     height: 100%;
     width: 100%;
