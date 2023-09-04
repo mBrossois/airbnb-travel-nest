@@ -144,10 +144,13 @@ function setupFourthPage(pageData) {
 }
 
 function setupLeaflet(pageElement, mapMarkers) {
-    const mapEl = document.createElement('div')
-    mapEl.setAttribute('id', 'map')
-
-    pageElement.appendChild(mapEl)
+    const mapEl = document.getElementById('map')
+    if(!mapEl) {
+        const mapEl = document.createElement('div')
+        mapEl.setAttribute('id', 'map')
+    
+        pageElement.appendChild(mapEl)
+    }
 
     createMap()
     addMarkers(mapMarkers)
