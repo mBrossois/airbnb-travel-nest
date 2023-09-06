@@ -25,6 +25,7 @@ let navELements
 let pageSizes
 
 async function loadAll() {
+    location.hash = 'home'
     await setupNavigation()
     await setupText()
     setupImagesNav()
@@ -70,11 +71,11 @@ async function setupNavigation() {
         link.setAttribute('href', `#${navigation.urls[navItem].toLowerCase()}`)
         nav.appendChild(link)
     }
-    
+
     navELements = document.querySelectorAll('nav a')
 
     active = navELements[0]
-    active.classList.add('active')
+    active.classList.add('active')    
 
 }
 
@@ -177,14 +178,6 @@ function closeMenu() {
         resetMap()
     }
 
-    // Scroll to right page
-    if(window.location.hash) {
-        const scrollToItem = document.querySelector(window.location.hash) 
-        const y = scrollToItem.getBoundingClientRect().top + window.scrollY;
-
-        window.scrollTo({top: y, behavior: 'smooth'})
-    }
-
     // Event listeners
     hamburger.addEventListener('click', () => {
         navigationBlock.classList.add('open')
@@ -210,10 +203,11 @@ function closeMenu() {
 
     for(let element of navELements) {
         element.addEventListener('click', (event) => {
-            closeMenu()
             active.classList.remove('active')
             event.target.classList.add('active')
             active = event.target
+            closeMenu()
+
         })
     }
 
