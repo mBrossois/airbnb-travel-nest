@@ -25,6 +25,7 @@ const scene = new THREE.Scene()
  */
 // Geometry
 const geometry = new THREE.SphereGeometry(15, 32, 32)
+geometry.rotateY(-20)
 
 function getTexture(loader, url) {
     const texture = loader.load(url)
@@ -73,14 +74,14 @@ imagesNav.addEventListener('change', (event) => {
  */
 const sizes = {
     width: window.innerWidth / 1.2,
-    height: window.innerHeight / 1.2
+    height: ( window.innerHeight - 100 ) / 1.2 
 }
 
 window.addEventListener('resize', () =>
 {
     // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+    sizes.width = window.innerWidth / 1.2
+    sizes.height = (window.innerHeight - 100 ) / 1.2 
 
     // Update camera
     camera.aspect = sizes.width / sizes.height

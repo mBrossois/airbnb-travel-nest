@@ -40,6 +40,7 @@ function setupImagesNav() {
 
     const roomList = [
         { enText: 'Hallway', frText: 'Couloir', value: 'hallway'},
+        { enText: 'Office', frText: 'Bureau', value: 'office'},
         { enText: 'Kitchen', frText: 'Cuisine', value: 'kitchen'},
         { enText: 'Livingroom one', frText: 'Salon un', value: 'livingRoomOne'},
         { enText: 'Livingroom two', frText: 'Salon deux', value: 'livingRoomTwo'},
