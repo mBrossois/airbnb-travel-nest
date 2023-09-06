@@ -1,11 +1,5 @@
-import L, { layerGroup } from 'leaflet'
+import L from 'leaflet'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import barImg from  '../static/images/icons/pointer-bar.png'
-import airbnbImg from '../static/images/icons/pointer-airbnb.png'
-import restaurantImg from  '../static/images/icons/pointer-restaurant.png'
-import activityImg from '../static/images/icons/pointer-activities.png'
-import croissantImg from '../static/images/icons/pointer-croissants.png'
-import shadowImg from '../static/images/icons/pointer-shadow.png'
 
 let map
 let originalTile
@@ -84,7 +78,7 @@ export function addMarker(marker, icon) {
 
 const customMarker = L.Icon.extend({
     options: {
-        shadowUrl: shadowImg,
+        shadowUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017398/airbnb/pointers/pointer-shadow_wyr8k0.png',
         iconSize:     [28, 41], // size of the icon
         shadowSize:   [28, 41], // size of the shadow
         iconAnchor:   [14, 41], // point of the icon which will correspond to marker's location
@@ -93,8 +87,8 @@ const customMarker = L.Icon.extend({
     }
 });
 
-const airbnbIcon = new customMarker({iconUrl: airbnbImg});
-const restaurantIcon = new customMarker({iconUrl: restaurantImg});
-const barIcon = new customMarker({iconUrl: barImg});
-const activityIcon = new customMarker({iconUrl: activityImg});
-const croissantIcon = new customMarker({iconUrl: croissantImg});
+const airbnbIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017396/airbnb/pointers/pointer-airbnb_h9ex81.png'});
+const restaurantIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017398/airbnb/pointers/pointer-restaurant_co1fbo.png'});
+const barIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017397/airbnb/pointers/pointer-bar_yqv7ui.png'});
+const activityIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017396/airbnb/pointers/pointer-activities_vgwnpy.png'});
+const croissantIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017397/airbnb/pointers/pointer-croissants_fkanst.png'});
