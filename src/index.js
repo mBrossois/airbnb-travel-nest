@@ -40,6 +40,7 @@ function setupImagesNav() {
 
     const roomList = [
         { enText: 'Hallway', frText: 'Couloir', value: 'hallway'},
+        { enText: 'Office', frText: 'Bureau', value: 'office'},
         { enText: 'Kitchen', frText: 'Cuisine', value: 'kitchen'},
         { enText: 'Livingroom one', frText: 'Salon un', value: 'livingRoomOne'},
         { enText: 'Livingroom two', frText: 'Salon deux', value: 'livingRoomTwo'},
@@ -144,10 +145,13 @@ function setupFourthPage(pageData) {
 }
 
 function setupLeaflet(pageElement, mapMarkers) {
-    const mapEl = document.createElement('div')
-    mapEl.setAttribute('id', 'map')
-
-    pageElement.appendChild(mapEl)
+    const mapEl = document.getElementById('map')
+    if(!mapEl) {
+        const mapEl = document.createElement('div')
+        mapEl.setAttribute('id', 'map')
+    
+        pageElement.appendChild(mapEl)
+    }
 
     createMap()
     addMarkers(mapMarkers)
