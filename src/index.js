@@ -158,6 +158,14 @@ function setupLeaflet(pageElement, mapMarkers) {
     setupLayers(language)
 }
 
+function closeMenu() {
+    document.body.style.overflowY = 'scroll'
+
+    navigationBlock.classList.remove('open')
+    close.classList.add('hidden')
+    hamburger.classList.remove('hidden')
+}
+
 (async () => {
     await loadAll()
 
@@ -187,11 +195,7 @@ function setupLeaflet(pageElement, mapMarkers) {
     })
 
     close.addEventListener('click', () => {
-        document.body.style.overflowY = 'scroll'
-
-        navigationBlock.classList.remove('open')
-        close.classList.add('hidden')
-        hamburger.classList.remove('hidden')
+        closeMenu()
     })
 
     document.addEventListener('scroll', () => {
@@ -206,12 +210,10 @@ function setupLeaflet(pageElement, mapMarkers) {
 
     for(let element of navELements) {
         element.addEventListener('click', (event) => {
+            closeMenu()
             active.classList.remove('active')
             event.target.classList.add('active')
             active = event.target
-            navigationBlock.classList.remove('open')
-            close.classList.add('hidden')
-            hamburger.classList.remove('hidden')
         })
     }
 
