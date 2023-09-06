@@ -2,6 +2,7 @@ import { textField } from './utils/text-field'
 import { activePageNumber } from './utils/page'
 import { getNavigation, getPages } from './utils/contentful'
 import { createMap, addMarkers, setupLayers, resetMap } from './utils/map'
+import { scrollToPage } from './utils/scroll'
 
 let language = 'en-US'
 
@@ -25,7 +26,6 @@ let navELements
 let pageSizes
 
 async function loadAll() {
-    location.hash = 'home'
     await setupNavigation()
     await setupText()
     setupImagesNav()
@@ -68,7 +68,14 @@ async function setupNavigation() {
         const link = document.createElement("a")
     
         link.textContent = navigation.titles[navItem]
-        link.setAttribute('href', `#${navigation.urls[navItem].toLowerCase()}`)
+        link.addEventListener('click', () => {
+            const activePage = document.getElementById(navigation.urls[navItem].toLowerCase())
+            scrollToPage(activePage)
+            active.classList.remove('active')
+            activePage.classList.add('active')
+            active = activePage
+            closeMenu()
+        })
         nav.appendChild(link)
     }
 
@@ -169,6 +176,8 @@ function closeMenu() {
 
 (async () => {
     await loadAll()
+
+
 
     // On language change
     function clearAll() {
