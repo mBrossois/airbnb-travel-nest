@@ -1,15 +1,5 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import hallwayImg from  '../static/images/3dImages/3dImageHallway.jpeg'
-import officeImg from '../static/images/3dImages/3dImageOffice.jpeg'
-import kitchenImg from  '../static/images/3dImages/3dImageKitchen.jpeg'
-import livingRoomOneImg from '../static/images/3dImages/3dImageLivingroomOne.jpeg'
-import livingRoomTwoImg from '../static/images/3dImages/3dImageLivingroomTwo.jpeg'
-import bedroomImg from '../static/images/3dImages/3dImageBedroom.jpeg'
-import bathroomOneImg from '../static/images/3dImages/3dImageBathroomOne.jpeg'
-import bathroomTwoImg from '../static/images/3dImages/3dImageBathroomTwo.jpeg'
-import bathroomThreeImg from '../static/images/3dImages/3dImageBathroomThree.jpeg'
-import bathroomFourImg from '../static/images/3dImages/3dImageBathroomFour.jpeg'
 
 /**
  * Base
@@ -30,7 +20,7 @@ const scene = new THREE.Scene()
 const geometry = new THREE.SphereGeometry(15, 32, 32)
 geometry.rotateY(-20)
 
-function getTexture(loader, url) {
+async function getTexture(loader, url) {
     const texture = loader.load(url)
     texture.wrapS = THREE.RepeatWrapping;
     texture.repeat.x = - 1;
@@ -51,16 +41,16 @@ function getTexture(loader, url) {
 const textureLoader = new THREE.TextureLoader()
 
 const materials = {
-    hallway: getTexture(textureLoader, hallwayImg ),
-    office: getTexture(textureLoader, officeImg ),
-    kitchen: getTexture(textureLoader, kitchenImg ),
-    livingRoomOne: getTexture(textureLoader, livingRoomOneImg ),
-    livingRoomTwo: getTexture(textureLoader, livingRoomTwoImg ),
-    bedroom: getTexture(textureLoader, bedroomImg ),
-    bathroomOne: getTexture(textureLoader, bathroomOneImg ),
-    bathroomTwo: getTexture(textureLoader, bathroomTwoImg ),
-    bathroomThree: getTexture(textureLoader, bathroomThreeImg ),
-    bathroomFour: getTexture(textureLoader, bathroomFourImg )
+    hallway: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016450/airbnb/3d-pictures/3dImageHallway_yya7my.jpg' ),
+    office: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016952/airbnb/3d-pictures/3dImageOffice_ig9tug.jpg' ),
+    kitchen: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016951/airbnb/3d-pictures/3dImageKitchen_raplmn.jpg' ),
+    livingRoomOne: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016954/airbnb/3d-pictures/3dImageLivingroomOne_fe1evo.jpg' ),
+    livingRoomTwo: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016952/airbnb/3d-pictures/3dImageLivingroomTwo_yyddas.jpg' ),
+    bedroom: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016946/airbnb/3d-pictures/3dImageBedroom_lnrnny.jpg' ),
+    bathroomOne: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016945/airbnb/3d-pictures/3dImageBathroomOne_lxwvrp.jpg' ),
+    bathroomTwo: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016949/airbnb/3d-pictures/3dImageBathroomTwo_ktxj4o.jpg' ),
+    bathroomThree: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016945/airbnb/3d-pictures/3dImageBathroomThree_zacrka.jpg' ),
+    bathroomFour: await getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016945/airbnb/3d-pictures/3dImageBathroomFour_bxkji2.jpg' )
 }
 
 // Mesh
