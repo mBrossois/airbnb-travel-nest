@@ -17,6 +17,9 @@ import bathroomFourImg from '../static/images/3dImages/3dImageBathroomFour.jpeg'
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
+// Icon
+const dragIcon = document.querySelector('.drag-icon')
+
 // Scene
 const scene = new THREE.Scene()
 
@@ -77,6 +80,9 @@ const sizes = {
     height: ( window.innerHeight - 100 ) / 1.2 
 }
 
+// Update drag icon placement
+dragIcon.style = `margin-left: ${- sizes.width / 2 - ( 5 * 16 / 2 )}; margin-top: ${sizes.height - ( 6 * 16 )}`
+
 window.addEventListener('resize', () =>
 {
     // Update sizes
@@ -90,6 +96,10 @@ window.addEventListener('resize', () =>
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+    // Update drag icon placement
+    dragIcon.style = `margin-left: ${- sizes.width / 2 - ( 5 * 16 / 2 )}; margin-top: ${sizes.height - ( 6 * 16 )}`
+
 })
 
 /**

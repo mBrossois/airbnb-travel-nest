@@ -248,6 +248,12 @@ Defaults
     padding: 2rem;
 }
 
+.drag-icon {
+    position: absolute;
+    height: 5rem;
+    width: 5rem;
+}
+
 select#imagesNav {
     -webkit-appearance: auto;
     -moz-appearance: auto;
@@ -299,6 +305,41 @@ Map
 
 /* 
 ########################
+Three js
+########################
+*/ 
+
+
+
+.section.third-page {
+    display: block;
+}
+
+.section.third-page canvas {
+    cursor: pointer;
+    border: 5px solid black;
+    margin-left: 2rem;
+} 
+
+.drag-icon circle,
+.drag-icon path {
+    transition: all 350ms ease-in-out;
+}
+
+.drag-icon path {
+    transform-origin: center;
+}
+
+.threeD-images:hover > .drag-icon circle {
+    fill: #ffd7a266;
+}
+
+.threeD-images:hover > .drag-icon path {
+    transform: scale(1.1);
+}
+
+/* 
+########################
 Desktop
 ########################
 */ 
@@ -341,14 +382,6 @@ Desktop
 
     }
 
-    .section.third-page {
-        display: block;
-    }
-
-    .section.third-page canvas{
-        margin-left: 2rem;
-    }
-
     #map {
 
         margin-left: 2rem;
@@ -386,12 +419,3 @@ Desktop
     }
 }
 
-/* 
-########################
-Three js
-########################
-*/ 
-
-.section.third-page canvas {
-    border: 5px solid black;
-}
