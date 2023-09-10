@@ -99,6 +99,7 @@ nav a {
     font-size: 1.5rem;
     padding: 1rem;
     min-height: 3rem;
+    cursor: pointer;
 }
 
 nav a:hover {
@@ -326,16 +327,26 @@ Three js
     transition: all 350ms ease-in-out;
 }
 
+/* .drag-icon circle {
+    animation: changeOpacity 2500ms ease-in-out forwards infinite;
+} */
+
+.drag-icon {
+    pointer-events: none;
+}
+
 .drag-icon path {
     transform-origin: center;
 }
 
 .threeD-images:hover > .drag-icon circle {
     fill: #ffd7a266;
+    /* display: none; */
 }
 
 .threeD-images:hover > .drag-icon path {
     transform: scale(1.1);
+    /* display: none; */
 }
 
 /* 
@@ -419,3 +430,13 @@ Desktop
     }
 }
 
+
+
+@keyframes changeOpacity {
+    0%, 100% {
+     opacity: 1;   
+    } 50%  {
+        opacity: 0.4;
+    }
+    
+}
