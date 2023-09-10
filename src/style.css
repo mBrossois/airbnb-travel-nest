@@ -232,6 +232,10 @@ Defaults
     background-color: #1ec11e;
 }
 
+.landings-page #bookButton .book-icon svg {
+    height: 2.5rem;
+}
+
 .corrousel_container {
     height: 100%;
     width: calc(100% * 3);
