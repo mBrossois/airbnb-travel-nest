@@ -40,16 +40,16 @@ async function loadAll() {
 function setupImagesNav() {
 
     const roomList = [
+        { enText: 'Livingroom (1)', frText: 'Salon (1)', value: 'livingRoomOne'},
+        { enText: 'Livingroom (2)', frText: 'Salon (2)', value: 'livingRoomTwo'},
         { enText: 'Hallway', frText: 'Couloir', value: 'hallway'},
         { enText: 'Office', frText: 'Bureau', value: 'office'},
         { enText: 'Kitchen', frText: 'Cuisine', value: 'kitchen'},
-        { enText: 'Livingroom one', frText: 'Salon un', value: 'livingRoomOne'},
-        { enText: 'Livingroom two', frText: 'Salon deux', value: 'livingRoomTwo'},
         { enText: 'Bedroom', frText: 'Chambre', value: 'bedroom'},
-        { enText: 'Bathroom one', frText: 'Salle de bain un', value: 'bathroomOne'},
-        { enText: 'Bathroom two', frText: 'Salle de bain deux', value: 'bathroomTwo'},
-        { enText: 'Bathroom three', frText: 'Salle de bain trois', value: 'bathroomThree'},
-        { enText: 'Bathroom four', frText: 'Salle de bain quatre', value: 'bathroomFour'},
+        { enText: 'Bathroom (1)', frText: 'Salle de bain (1)', value: 'bathroomOne'},
+        { enText: 'Bathroom (2)', frText: 'Salle de bain (2)', value: 'bathroomTwo'},
+        { enText: 'Bathroom (3)', frText: 'Salle de bain (3)', value: 'bathroomThree'},
+        { enText: 'Bathroom (4)', frText: 'Salle de bain (4)', value: 'bathroomFour'},
     ]    
     for(let room of roomList) {
         const option = document.createElement("option")

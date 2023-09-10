@@ -87,7 +87,18 @@ const customMarker = L.Icon.extend({
     }
 });
 
-const airbnbIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017396/airbnb/pointers/pointer-airbnb_h9ex81.png'});
+const customMarkerAirbnb = L.Icon.extend({
+    options: {
+        shadowUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017398/airbnb/pointers/pointer-shadow_wyr8k0.png',
+        iconSize:     [35, 51], // size of the icon
+        shadowSize:   [35, 51], // size of the shadow
+        iconAnchor:   [17, 51], // point of the icon which will correspond to marker's location
+        shadowAnchor: [0, 51],  // the same for the shadow
+        popupAnchor:  [0, -52] // point from which the popup should open relative to the iconAnchor
+    }
+});
+
+const airbnbIcon = new customMarkerAirbnb({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017396/airbnb/pointers/pointer-airbnb_h9ex81.png'});
 const restaurantIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017398/airbnb/pointers/pointer-restaurant_co1fbo.png'});
 const barIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017397/airbnb/pointers/pointer-bar_yqv7ui.png'});
 const activityIcon = new customMarker({iconUrl: 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694017396/airbnb/pointers/pointer-activities_vgwnpy.png'});

@@ -18,7 +18,8 @@ const scene = new THREE.Scene()
  */
 // Geometry
 const geometry = new THREE.SphereGeometry(15, 32, 32)
-geometry.rotateY(-20)
+geometry.rotateY(6)
+geometry.rotateX(.1)
 
 function getTexture(loader, url) {
     const texture = loader.load(url)
@@ -44,8 +45,8 @@ const materials = {
     hallway: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016450/airbnb/3d-pictures/3dImageHallway_yya7my.jpg' ),
     office: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016952/airbnb/3d-pictures/3dImageOffice_ig9tug.jpg' ),
     kitchen: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016951/airbnb/3d-pictures/3dImageKitchen_raplmn.jpg' ),
-    livingRoomOne: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016954/airbnb/3d-pictures/3dImageLivingroomOne_fe1evo.jpg' ),
-    livingRoomTwo: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016952/airbnb/3d-pictures/3dImageLivingroomTwo_yyddas.jpg' ),
+    livingRoomOne: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016952/airbnb/3d-pictures/3dImageLivingroomTwo_yyddas.jpg' ),
+    livingRoomTwo: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016954/airbnb/3d-pictures/3dImageLivingroomOne_fe1evo.jpg' ),
     bedroom: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016946/airbnb/3d-pictures/3dImageBedroom_lnrnny.jpg' ),
     bathroomOne: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016945/airbnb/3d-pictures/3dImageBathroomOne_lxwvrp.jpg' ),
     bathroomTwo: getTexture(textureLoader, 'https://res.cloudinary.com/dt7uhy7jv/image/upload/v1694016949/airbnb/3d-pictures/3dImageBathroomTwo_ktxj4o.jpg' ),
@@ -54,7 +55,7 @@ const materials = {
 }
 
 // Mesh
-const mesh = new THREE.Mesh(geometry, materials.hallway)
+const mesh = new THREE.Mesh(geometry, materials.livingRoomOne)
 scene.add(mesh)
 
 const imagesNav = document.getElementById('imagesNav')
@@ -69,6 +70,7 @@ const sizes = {
     width: window.innerWidth / 1.2,
     height: ( window.innerHeight - 100 ) / 1.2 
 }
+
 
 // Update drag icon placement
 dragIcon.style = `margin-left: ${- sizes.width / 2 - ( 5 * 16 / 2 )}; margin-top: ${sizes.height - ( 6 * 16 )}`
