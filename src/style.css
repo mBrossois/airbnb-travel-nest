@@ -233,7 +233,7 @@ Defaults
 }
 
 .landings-page #bookButton .book-icon svg {
-    height: 2.5rem;
+    height: 1.2rem;
 }
 
 .corrousel_container {
@@ -368,6 +368,11 @@ Desktop
         transform: translateX(0);
 
     }
+
+    .landings-page #bookButton .book-icon svg {
+        height: 2.5rem;
+    }
+    
 
     .navigation-block {
         display: block;
